@@ -19,6 +19,12 @@
             justify-content: center;
         }
 
+        #container {
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
         #fontSelector {
             margin: 20px;
             padding: 10px;
@@ -34,46 +40,58 @@
             font-size: 1.5em;
         }
 
+        #textInput {
+            margin: 20px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
         @font-face {
-    font-family: 'Bad Script';
-    src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/BadScript-Regular.ttf); 
-}
+            font-family: 'Bad Script';
+            src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/BadScript-Regular.ttf); 
+        }
 
-@font-face {
-    font-family: 'Dancing Script';
-    src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/DancingScript-Regular.ttf); 
-}
+        @font-face {
+            font-family: 'Dancing Script';
+            src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/DancingScript-Regular.ttf); 
+        }
 
-@font-face {
-    font-family: 'Great Vibes';
-    src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/GreatVibes-Regular.ttf);
-}
+        @font-face {
+            font-family: 'Great Vibes';
+            src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/GreatVibes-Regular.ttf);
+        }
 
-@font-face {
-    font-family: 'Homemade Apple';
-    src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/HomemadeApple-Regular.ttf); 
-}
+        @font-face {
+            font-family: 'Homemade Apple';
+            src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/HomemadeApple-Regular.ttf); 
+        }
 
-@font-face {
-    font-family: 'Amatic SC';
-    src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/AmaticSC-Regular.ttf); 
-}
+        @font-face {
+            font-family: 'Amatic SC';
+            src: url(https://raw.githubusercontent.com/charliektt/generador-de-fuentes/main/AmaticSC-Regular.ttf); 
+        }
     </style>
 </head>
 <body>
-    <h1>Generador de Fuentes</h1>
+    <div id="container">
+        <select id="fontSelector" onchange="changeFont()">
+            <option value="'Bad Script', cursive">Bad Script</option>
+            <option value="'Dancing Script', cursive">Dancing Script</option>
+            <option value="'Great Vibes', cursive">Great Vibes</option>
+            <option value="'Homemade Apple', cursive">Homemade Apple</option>
+            <option value="'Amatic SC', cursive">Amatic SC</option>
+        </select>
 
-    <label for="fontSelector">Selecciona una fuente:</label>
-    <select id="fontSelector" onchange="changeFont()">
-        <option value="'Bad Script', cursive">Bad Script</option>
-        <option value="'Dancing Script', cursive">Dancing Script</option>
-        <option value="'Great Vibes', cursive">Great Vibes</option>
-        <option value="'Homemade Apple', cursive">Homemade Apple</option>
-        <option value="'Amatic SC', cursive">Amatic SC</option>
-    </select>
+        <div>
+            <input type="text" id="textInput" oninput="updateText()">
+        </div>
 
-    <div id="outputText">
-        <p id="textToChange">Texto de ejemplo</p>
+        <div id="outputText">
+            <p id="textToChange">Texto de ejemplo</p>
+        </div>
     </div>
 
     <script>
@@ -83,6 +101,13 @@
             var textToChange = document.getElementById("textToChange");
 
             textToChange.style.fontFamily = selectedFont;
+        }
+
+        function updateText() {
+            var textInput = document.getElementById("textInput");
+            var textToChange = document.getElementById("textToChange");
+
+            textToChange.innerText = textInput.value;
         }
     </script>
 </body>
